@@ -112,7 +112,7 @@ Setters set a value, to update the RTC call **write()** after.
 - **void setSeconds(uint8_t value)** 0..59
 - **void setMinutes(uint8_t value)** 0..59
 - **void setHours(uint8_t value)** 0..23
-- **void setWeekDay(uint8_t value)** 1..7  1 = Monday .. 7 = Sunday
+- **void setWeekDay(uint8_t value)** 0..6  0 = Sunday, 1 = Monday .. 6 = Saturday
 - **void setDay(uint8_t value)** 1..31
 - **void setMonth(uint8_t value)** 1..12
 - **void setYear(uint8_t value)** 0..99
