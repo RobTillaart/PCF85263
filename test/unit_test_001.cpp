@@ -55,8 +55,8 @@ unittest(test_constructor)
 {
   PCF85263 rtc;
 
-  assertEqual(acd.getAddress(), PCF85263_DEFAULT_ADDRESS);
-  assertEqual(acd.lastRead(), 0);
+  assertEqual(rtc.getAddress(), PCF85263_DEFAULT_ADDRESS);
+  assertEqual(rtc.lastRead(), 0);
 }
 
 
