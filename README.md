@@ -91,8 +91,8 @@ The PCF85263 support max 400 KHz.
 
 ### Base RTC
 
-- **int read()** read the current time from the RTC.
-- **int write()** set the current time in the RTC.
+- **int readDateTime()** read the current time from the RTC.
+- **int writeDateTime()** set the current time in the RTC.
 Writes all fields, be aware that weekDay need to be set too.
 - **uint32_t lastRead()** lastTime in milliseconds when RTC is read.
 

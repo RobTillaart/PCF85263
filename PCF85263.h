@@ -92,8 +92,8 @@ public:
 
 
   //  BASE RTC
-  int      read();
-  int      write();
+  int      readDateTime();
+  int      writeDateTime();
   uint32_t lastRead();
 
 

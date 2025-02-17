@@ -49,7 +49,7 @@ uint8_t PCF85263::getAddress()
 //
 //  CORE
 //
-int PCF85263::read()
+int PCF85263::readDateTime()
 {
   _wire->beginTransmission(_address);
   _wire->write(PCF85263_SECONDS);
@@ -70,7 +70,7 @@ int PCF85263::read()
 }
 
 
-int PCF85263::write()
+int PCF85263::writeDateTime()
 {
   stopRTC();
   int _rv = PCF85263_OK;

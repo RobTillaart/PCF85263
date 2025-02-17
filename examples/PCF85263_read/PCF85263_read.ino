@@ -35,7 +35,7 @@ void setup()
 
 void loop()
 {
-  rtc.read();
+  rtc.readDateTime();
 
   Serial.print(rtc.lastRead());
   Serial.print("\t\t");

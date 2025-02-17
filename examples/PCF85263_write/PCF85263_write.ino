@@ -38,14 +38,8 @@ void setup()
   rtc.setDay(5);
   rtc.setMonth(12);
   rtc.setYear(24);
-  rtc.write();
+  rtc.writeDateTime();
 
-}
-
-
-void loop()
-{
-  rtc.read();
 
   Serial.print(rtc.lastRead());
   Serial.print("\t\t");
@@ -63,8 +57,11 @@ void loop()
   Serial.print('\n');
   Serial.print(rtc.weekDay());
   Serial.print('\n');
+}
 
-  delay(2000);
+
+void loop()
+{
 }
 
 
