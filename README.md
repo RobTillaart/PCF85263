@@ -24,19 +24,24 @@ The functionality implemented is just basic date time retrieval.
 
 More functionality upon request (if time permits)
 
+#### Not implemented but interesting:
+
+The device can run in a stop-watch mode. The range goes up to 999 999 hours,
+which is about 41666 days is about 114 years.
+
 
 ### Related
 
 - https://github.com/RobTillaart/PCF85263 this library
-- https://github.com/RobTillaart/DS3232 high precision RTC (extended)
+- https://github.com/RobTillaart/DS3232 high precision RTC
+- https://github.com/RobTillaart/stopWatch_RT SW stopwatch
+- https://github.com/RobTillaart/CountDown SW count down timer
 
 
 ## I2C
 
-TODO verify
-
 The device has a fixed I2C address of 0x51 (81) so only one RTC per I2C bus can be used.
-The I2C communication supports 3-5V so any 3.3V MCU should be able to connect.
+The I2C communication supports 0.9-5.0 V so any 3.3V MCU should be able to connect.
 Do not forget appropriate pull up resistors on the I2C SDA and SCL lines.
 
 If one needs more sensors there are some options.
@@ -65,11 +70,9 @@ too if they are behind the multiplexer.
 See example **TCA9548_demo_PCF85263.ino**
 
 
-### I2C Performance
+### I2C clock
 
-Max 400 KHz.
-
-TODO: run performance sketch on hardware.
+The PCF85263 support max 400 KHz.
 
 
 ## Interface
@@ -136,6 +139,11 @@ Use with care.
 - **int writeRegister(uint8_t reg, uint8_t value)**
 
 
+### Debugging
+
+- **int getLastReturnValue()** returns last low level I2C status. 0 == OK.
+
+
 ## Future
 
 #### Must
@@ -145,14 +153,14 @@ Use with care.
 
 #### Should
 
-- add examples
+- investigate stopwatch mode as it is unique.
 
 #### Could
 
 - extend functionality upon request.
   - alarms
   - extended controls
-- add stopwatch mode
+- add examples
 - add unit test
 
 #### Wont

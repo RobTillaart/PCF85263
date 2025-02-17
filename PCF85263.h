@@ -134,6 +134,9 @@ public:
   int      readRegister(uint8_t reg);
   int      writeRegister(uint8_t reg, uint8_t value);
 
+  //  DEBUGGING
+  //  get last low level return value, 0 == OK.
+  int      getLastReturnValue();
 
 private:
   //  fixed address
