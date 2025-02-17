@@ -124,10 +124,10 @@ void PCF85263::setYear(uint8_t value)    { _reg[6] = value; }
 void PCF85263::setRTCmode(uint8_t mode)
 {
   if (mode > 1) return;
-  uint8_t reg = readRegister(PCF85263_FUNCTION);
-  reg &= 0xEF;
-  if (mode == 1) reg |= 0x10;
-  writeRegister(PCF85263_FUNCTION);
+  uint8_t mask = readRegister(PCF85263_FUNCTION);
+  mask &= 0xEF;
+  if (mode == 1) mask |= 0x10;
+  writeRegister(PCF85263_FUNCTION, mask);
 }
 
 
