@@ -136,8 +136,9 @@ public:
 
 
 private:
-  uint8_t   _address;
-  TwoWire * _wire;
+  //  fixed address
+  const uint8_t _address = PCF85263_DEFAULT_ADDRESS;
+  TwoWire *     _wire;
 
   //  array holding the values
   uint8_t   _reg[7];

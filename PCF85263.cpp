@@ -13,8 +13,8 @@
 
 PCF85263::PCF85263(TwoWire *wire)
 {
-  _wire = wire;
-  _error = 0;
+  _wire     = wire;
+  _error    = 0;
   _lastRead = 0;
 }
 
