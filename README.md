@@ -18,7 +18,11 @@ Arduino library for the PCF85263 RTC (I2C).
 
 **Experimental**
 
-This library is to use the NXP PCF85263 RTC.
+This library is written to use the NXP PCF85263 RTC.
+
+The functionality implemented is just basic date time retrieval.
+
+More functionality upon request (if time permits)
 
 
 ### Related
