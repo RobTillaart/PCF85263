@@ -72,6 +72,8 @@ int PCF85263::read()
 
 int PCF85263::write()
 {
+  stopRTC();
+  int _rv = PCF85263_OK;
   _wire->beginTransmission(_address);
   _wire->write(PCF85263_SECONDS);
   for (int i = 0; i < 7; i++)
@@ -79,9 +81,9 @@ int PCF85263::write()
     _wire->write(dec2bcd(_reg[i]));
   }
   _rv = _wire->endTransmission();
-  if (_rv != 0) return PCF85263_ERROR_I2C;
-
-  return PCF85263_OK;
+  if (_rv != 0) _rv = PCF85263_ERROR_I2C;
+  startRTC();
+  return _rv;
 }
 
 
@@ -130,6 +132,15 @@ void PCF85263::setRTCmode(uint8_t mode)
   writeRegister(PCF85263_FUNCTION, mask);
 }
 
+void PCF85263::startRTC()
+{
+  writeRegister(PCF85263_STOP_ENABLE, 0);
+}
+
+void PCF85263::stopRTC()
+{
+  writeRegister(PCF85263_STOP_ENABLE, 1);
+}
 
 
 /////////////////////////////////////////////////////////
@@ -150,7 +161,6 @@ int PCF85263::readRegister(uint8_t reg)
   return _wire->read();
 }
 
-
 int PCF85263::writeRegister(uint8_t reg, uint8_t value)
 {
   _wire->beginTransmission(_address);
@@ -161,8 +171,7 @@ int PCF85263::writeRegister(uint8_t reg, uint8_t value)
   return PCF85263_OK;
 }
 
-
-int PCF85263::getLastReturnValue()
+int PCF85263::getLastI2Cstate()
 {
   return _rv;
 }

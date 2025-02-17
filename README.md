@@ -129,6 +129,12 @@ Note: you can also adjust just one field and keep the others.
 1 = Stopwatch mode, other ignored.
 
 
+### Start Stop RTC
+
+- **void startRTC()** idem.
+- **void stopRTC()** idem.
+
+
 ### Low level: Read/WriteRegister
 
 Allows to access all functionality the library did not implement (yet).
@@ -141,7 +147,7 @@ Use with care.
 
 ### Debugging
 
-- **int getLastReturnValue()** returns last low level I2C status. 0 == OK.
+- **int getLastI2Cstate()** returns last low level I2C status. 0 == OK.
 
 
 ## Future

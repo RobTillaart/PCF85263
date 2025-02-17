@@ -30,6 +30,7 @@
 ///////////////////////////////////////////
 //
 //  REGISTERS  RTC MODE - page 7
+//  note not all functionality is implemented.
 //
 //  DATE - TIME section 7.2
 #define PCF85263_SECONDS_100TH        0x00
@@ -42,36 +43,29 @@
 #define PCF85263_YEARS                0x07
 
 //  ALARMS section 7.4
-//  not implemented
 #define PCF85263_ALARM1               0x08
 #define PCF85263_ALARM2               0x0D
 #define PCF85263_ALARM_ENABLE         0x10
 
 //  TIMESTAMPS section 7.7
-//  not implemented
 #define PCF85263_TIMESTAMP1           0x11
 #define PCF85263_TIMESTAMP2           0x17
 #define PCF85263_TIMESTAMP3           0x1D
 #define PCF85263_TIMESTAMP_MODE       0x23
 
-//  OFFSET section 7.8
-//  not implemented
-#define PCF85263_OFFSET               0x24
-
-//  CONTROL section 7.10++
-//  not implemented
-#define PCF85263_OFFSET               0x24
-#define PCF85263_OSCILLATOR           0x25
-#define PCF85263_BATTERY              0x26
-#define PCF85263_PINIO                0x27
-#define PCF85263_FUNCTION             0x28
-#define PCF85263_INTA_ENABLE          0x29
-#define PCF85263_INTB_ENABLE          0x2A
-#define PCF85263_FLAGS                0x2B
-#define PCF85263_RAMBYTE              0x2C
-#define PCF85263_WATCHDOG             0x2D
-#define PCF85263_STOP_ENABLE          0x2E
-#define PCF85263_RESETS               0x2F
+//  CONTROL
+#define PCF85263_OFFSET               0x24        //  page 29
+#define PCF85263_OSCILLATOR           0x25        //  page 37
+#define PCF85263_BATTERY              0x26        //  page 38
+#define PCF85263_PINIO                0x27        //  page 44
+#define PCF85263_FUNCTION             0x28        //  page 48
+#define PCF85263_INTA_ENABLE          0x29        //  page 33
+#define PCF85263_INTB_ENABLE          0x2A        //  page 33
+#define PCF85263_FLAGS                0x2B        //  page 51
+#define PCF85263_RAMBYTE              0x2C        //  page 24
+#define PCF85263_WATCHDOG             0x2D        //  page 22
+#define PCF85263_STOP_ENABLE          0x2E        //  page 54
+#define PCF85263_RESETS               0x2F        //  page 52
 
 
 ///////////////////////////////////////////
@@ -79,7 +73,7 @@
 //  REGISTERS  STOPWATCH MODE
 //
 //  STOPWATCH section 7.3
-//  not implemented
+//
 //  0x00-0x03 same register names
 #define PCF85263_HOURS_100            0x04
 #define PCF85263_HOURS_10000          0x05
@@ -128,7 +122,13 @@ public:
   void     setRTCmode(uint8_t mode = 0);
 
 
-  //  LOW LEVEL access to all registers
+  //  STOP_ENABLE register
+  void     startRTC();
+  void     stopRTC();
+
+
+  //  LOW LEVEL
+  //  access to all registers
   //  check datasheet for details of registers.
   //  return < 0 is error
   int      readRegister(uint8_t reg);
@@ -136,7 +136,7 @@ public:
 
   //  DEBUGGING
   //  get last low level return value, 0 == OK.
-  int      getLastReturnValue();
+  int      getLastI2Cstate();
 
 private:
   //  fixed address
